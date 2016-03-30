@@ -1,4 +1,4 @@
-elasticsearch:
+geelasticsearch:
   container_name: elk_elasticsearch
   image: elasticsearch:latest
   ports:
@@ -18,7 +18,11 @@ logstash:
   image: logstash:latest
   volumes:
     - ./logstash.conf:/etc/logstash/conf.d/logstash.conf
+  expose:
+    - "12201"
   ports:
     - "5000:5000"
+    - "12201:12201"
+    - "12201:12201/udp"
   links:
     - elasticsearch
